@@ -13,16 +13,27 @@ export class TaskService {
       return [];
     }
     const tasksList: Task[] = JSON.parse(tasks);
-    console.log(tasksList)
+    console.log(tasksList);
 
     return tasksList;
   }
 
   addTask(task: Task): void {
     let tasks = this.getTasksList();
-    if(!Array.isArray(task)) tasks = []
+
+    if(!Array.isArray(task)) tasks = [];
     tasks.push(task);
-    window.localStorage.setItem('tasks', JSON.stringify(task));
+
+    this.saveTasks(tasks);
+  }
+
+  deleteTask(task: Task): void {
+    let tasks = this.getTasksList();
+    if(Array.isArray(task)) {
+      tasks = tasks.filter(tasksItem => tasksItem.id !== task.id);
+    }
+
+    this.saveTasks(tasks);
   }
 
   saveTasks(tasks: Task[]): void {

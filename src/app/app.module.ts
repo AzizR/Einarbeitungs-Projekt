@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import {MatNativeDateModule} from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -45,7 +44,6 @@ import { TaskDialogComponent } from './components/task-dialog/task-dialog.compon
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
-    FontAwesomeModule,
     MatMenuModule,
     MatIconModule,
     MatNativeDateModule,

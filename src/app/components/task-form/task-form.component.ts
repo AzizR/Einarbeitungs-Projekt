@@ -41,15 +41,11 @@ export class TaskFormComponent implements OnInit {
     console.log(typeof this.taskFormData.value.name);
     const id = uuidv4();
 
-    const task: Task = {
-      ...this.taskFormData.value,
-      id,
-      name: '',
-      description: '',
-      deadline: '',
-      priority: 'Hoch'
-    }
-    console.log(task)
+    // const task: Task = {
+    //   ...this.taskFormData.value,
+    //   id,
+    // }
+    // console.log(task)
 
     // this.taskService.addTask(task);
   }
