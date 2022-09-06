@@ -1,0 +1,10 @@
+<div class="task-container">
+    <app-tasks-list [tasksList]="tasksList"></app-tasks-list>
+    <br>
+    <button 
+        mat-raised-button color="primary"
+        (click)="openDialog()"
+    > + Aufgabe</button>
+
+    <app-task-form *ngIf="false"></app-task-form>
+</div>

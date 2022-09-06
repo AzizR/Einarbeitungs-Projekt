@@ -1,0 +1,51 @@
+<form [formGroup]="taskFormData" (ngSubmit)="saveTask()">
+    <div class="task-form"> 
+        <div class="col-1">
+            <div class="form-control">
+                <mat-form-field appearance="standard">
+                    <mat-label>Name</mat-label>
+                    <input id="name" matInput formControlName="name" placeholder="Name">
+                </mat-form-field>
+            </div>
+            
+            <div class="form-control">
+                <mat-form-field appearance="standard">
+                    <mat-label>Beschreibung</mat-label>
+                    <input matInput formControlName="description">
+                </mat-form-field>
+            </div>
+        </div>
+        
+        <div class="col-2">
+            <div class="form-control">
+                <mat-form-field appearance="standard">
+                    <mat-label>Fälligkeit</mat-label>
+                    <input matInput formControlName="deadline" [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            
+            
+            <div class="form-control">
+                <mat-form-field appearance="standard">
+                    <mat-label>Priorität</mat-label>
+                    <mat-select formControlName="priority">
+                        <mat-option *ngFor="let priority of priorityOptions" [value]="priority">{{priority}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="form-controls">
+        <button mat-icon-button mat-dialog-close>
+            Abbrechen
+        </button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!taskFormData.value.name">
+            Speichern
+        </button>
+    </div>
+</form>
+    

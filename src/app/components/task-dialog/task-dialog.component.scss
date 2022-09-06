@@ -1,0 +1,24 @@
+@mixin FlexSpaceBetween {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dialog {
+    min-width: 650px;
+}
+
+// .dialog-footer {
+//     @include FlexSpaceBetween;
+//     padding-top: 10px;
+// }
+
+.dialog-header {
+    @include FlexSpaceBetween;
+    padding-bottom: 10px;
+
+    h2 {
+        margin: 0;
+    }
+}
+

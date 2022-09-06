@@ -1,0 +1,7 @@
+<div class="tasks-list">
+    <h1>Aufgaben</h1>
+    <mat-divider></mat-divider>
+    <div class="list-container">
+        <app-task-item *ngFor="let task of tasksList" [task]="task"></app-task-item>
+    </div>
+</div>

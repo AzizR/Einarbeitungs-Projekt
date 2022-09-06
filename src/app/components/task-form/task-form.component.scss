@@ -1,0 +1,27 @@
+.task-form {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 40px;
+
+    .mat-form-field {
+        width: 100%;
+    }
+}
+
+.col-1 {
+    width: 60%;
+    padding-right: 10px;
+}
+
+.col-2 {
+    width: 40%;
+    padding-left: 10px;
+}
+
+.form-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
