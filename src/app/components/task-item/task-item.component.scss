@@ -1,10 +1,34 @@
+@mixin FlexVerticallyCentered {
+    display: flex;
+    align-items: center;
+
+}
+
 .task-item {
     margin: 10px 0;
 
     .task-item-row {
-        display: flex;
+        @include FlexVerticallyCentered;
         justify-content: space-between;
-        align-items: center;
+
+    }
+
+    .task-name {
+        @include FlexVerticallyCentered;
+        
     }
 }
+
+.high-priority {
+    border-left: 2px solid rgba(187, 10, 10, 0.808);
+}
+
+.middle-priority {
+    border-left: 2px solid rgba(255, 128, 9, 0.808);
+}
+
+.low-priority {
+    border-left: 2px solid rgba(5, 165, 40, 0.808);
+}
+
 

@@ -1,4 +1,4 @@
-<form [formGroup]="taskFormData" (ngSubmit)="saveTask()">
+<form [formGroup]="taskFormData" (ngSubmit)="task ? updateTask() : saveTask()">
     <div class="task-form"> 
         <div class="col-1">
             <div class="form-control">
@@ -7,7 +7,6 @@
                     <input required id="name" matInput formControlName="name" placeholder="Name">
                 </mat-form-field>
             </div>
-            
             <div class="form-control">
                 <mat-form-field appearance="standard">
                     <mat-label>Beschreibung</mat-label>
@@ -43,8 +42,8 @@
         <button mat-icon-button mat-dialog-close>
             Abbrechen
         </button>
-        <button type="submit" mat-raised-button color="primary" [disabled]="!taskFormData.value.name">
-            Speichern
+        <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="closeDialog" [disabled]="!taskFormData.value.name">
+            {{task?.name ? 'Aktualisieren' : 'Speichern'}}
         </button>
     </div>
 </form>

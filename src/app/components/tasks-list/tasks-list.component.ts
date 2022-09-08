@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from 'src/app/types/task';
 
 @Component({
@@ -6,12 +6,21 @@ import { Task } from 'src/app/types/task';
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.scss']
 })
-export class TasksListComponent implements OnInit {  
-  @Input() tasksList: Task[] = []
-  
-  constructor() { }
+export class TasksListComponent {  
+  @Input() tasksList: Task[] = [];
+  @Output() onTaskDelete: EventEmitter<string> = new EventEmitter();
+  @Output() onUpdateTaskStatus: EventEmitter<Task> = new EventEmitter();
+  @Output() onUpdateTask: EventEmitter<Task> = new EventEmitter();
 
-  ngOnInit(): void {
+  deleteTask(taskId: string): void {
+    this.onTaskDelete.emit(taskId);
   }
 
+  updateTaskStatus(task: Task): void {
+    this.onUpdateTaskStatus.emit(task);
+  }
+
+  updateTask(task: Task): void {
+    this.onUpdateTask.emit(task);
+  }
 }

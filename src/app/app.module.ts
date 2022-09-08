@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 /* Angular Material Modules */
@@ -17,14 +17,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
-/* Components import */
+/* Component imports */
 import { AppComponent } from './app.component';
 import { TaskComponent } from './components/task/task.component';
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
+import { LineThroughDirective } from './directives/line-through.directive';
+import { DialogDirective } from './directives/dynamic-components/dialog.directive';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,8 @@ import { TaskDialogComponent } from './components/task-dialog/task-dialog.compon
     TaskItemComponent,
     TaskFormComponent,
     TaskDialogComponent,
+    LineThroughDirective,
+    DialogDirective,
   ],
   imports: [
     BrowserModule,
@@ -50,11 +56,11 @@ import { TaskDialogComponent } from './components/task-dialog/task-dialog.compon
     MatDatepickerModule,
     MatSelectModule,
     MatGridListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatTooltipModule
   ],
-  providers: [
-   
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

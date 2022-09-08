@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 
-// Services
 import { TaskService } from 'src/app/services/task.service';
 
-// Types
 import { Task } from 'src/app/types/task';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-task',
@@ -15,6 +14,11 @@ import { Task } from 'src/app/types/task';
 })
 export class TaskComponent implements OnInit {
   tasksList: Task[] = [];
+  undoneTasks: Task[] = [];
+  doneTasks: Task[] = [];
+
+  tasks$: Observable<Task[]> | undefined;
+  public tasksSubscription: Subscription | undefined;
 
   constructor(
     private taskService: TaskService,
@@ -26,17 +30,39 @@ export class TaskComponent implements OnInit {
   }
 
   getTasksList(): void {
-    console.log(this.taskService.getTasksList());
-    this.tasksList = this.taskService.getTasksList();
+    this.tasks$ = this.taskService.tasks$
+
+    this.tasksSubscription = this.tasks$.subscribe(values => {
+      this.undoneTasks =  values.filter(task => !task.isDone)
+      this.doneTasks =  values.filter(task => task.isDone)
+    });
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(TaskDialogComponent)
+  openDialog(task: Task | null = null): void {
+      // TODO: provide the task to TaskDialogComponent
+      const shareDataObj = {
+        data: {task}
+      };
+      const dialogRef = this.dialog.open(TaskDialogComponent, shareDataObj);
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getTasksList()
+      this.getTasksList();
     })
-
   }
 
+  deleteTask(taskId: string): void {
+    console.log(taskId);
+    
+    this.taskService.deleteTask(taskId);
+    this.getTasksList();
+  }
+
+  updateTaskStatus(task: Task): void {
+    this.taskService.updateTaskStatus(task);
+    this.getTasksList();
+  }
+
+  ngOnDestroy(): void {
+    this.tasksSubscription?.unsubscribe()
+  }
 }
