@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 /* Angular Material Modules */
@@ -19,6 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 /* Component imports */
 import { AppComponent } from './app.component';
@@ -29,6 +31,7 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 import { LineThroughDirective } from './directives/line-through.directive';
 import { DialogDirective } from './directives/dynamic-components/dialog.directive';
+import { TaskControlsComponent } from './components/task-controls/task-controls.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { DialogDirective } from './directives/dynamic-components/dialog.directiv
     TaskDialogComponent,
     LineThroughDirective,
     DialogDirective,
+    TaskControlsComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,9 +62,12 @@ import { DialogDirective } from './directives/dynamic-components/dialog.directiv
     MatGridListModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatTooltipModule
+    MatTooltipModule,
+    DragDropModule
   ],
-  providers: [],
+  providers: [{
+    provide: MAT_DATE_LOCALE, useValue: 'de-DE'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

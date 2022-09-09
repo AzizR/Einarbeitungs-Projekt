@@ -17,8 +17,8 @@ export class TaskComponent implements OnInit {
   undoneTasks: Task[] = [];
   doneTasks: Task[] = [];
 
-  tasks$: Observable<Task[]> | undefined;
-  public tasksSubscription: Subscription | undefined;
+  tasks$!: Observable<Task[]>;
+  public tasksSubscription!: Subscription;
 
   constructor(
     private taskService: TaskService,
@@ -30,16 +30,15 @@ export class TaskComponent implements OnInit {
   }
 
   getTasksList(): void {
-    this.tasks$ = this.taskService.tasks$
+    this.tasks$ = this.taskService.tasks$;
 
     this.tasksSubscription = this.tasks$.subscribe(values => {
-      this.undoneTasks =  values.filter(task => !task.isDone)
-      this.doneTasks =  values.filter(task => task.isDone)
+      this.undoneTasks =  values.filter(task => !task.isDone);
+      this.doneTasks =  values.filter(task => task.isDone);
     });
   }
 
   openDialog(task: Task | null = null): void {
-      // TODO: provide the task to TaskDialogComponent
       const shareDataObj = {
         data: {task}
       };
@@ -48,18 +47,6 @@ export class TaskComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getTasksList();
     })
-  }
-
-  deleteTask(taskId: string): void {
-    console.log(taskId);
-    
-    this.taskService.deleteTask(taskId);
-    this.getTasksList();
-  }
-
-  updateTaskStatus(task: Task): void {
-    this.taskService.updateTaskStatus(task);
-    this.getTasksList();
   }
 
   ngOnDestroy(): void {

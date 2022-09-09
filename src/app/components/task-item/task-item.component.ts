@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/types/task';
 
 @Component({
@@ -8,16 +9,16 @@ import { Task } from 'src/app/types/task';
 })
 export class TaskItemComponent {
   @Input() task!: Task;
-  @Output() onTaskDelete: EventEmitter<string> = new EventEmitter();
-  @Output() onTaskUpdateStatus: EventEmitter<Task> = new EventEmitter();
   @Output() onTaskUpdate: EventEmitter<Task> = new EventEmitter();
 
+  constructor(private taskService: TaskService) {}
+
   deleteTask(taskId: string): void {
-    this.onTaskDelete.emit(taskId);
+    this.taskService.deleteTask(taskId);
   }
 
   updateTaskStatus(task: Task): void{
-    this.onTaskUpdateStatus.emit(task);
+    this.taskService.updateTaskStatus(task);
   }
 
   updateTask(task: Task): void {

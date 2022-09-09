@@ -1,11 +1,14 @@
 <div class="task-container">
-    <h1>Aufgaben</h1>
+    <div class="flex space-between align-items-center">
+        <h1>Aufgaben</h1>
+        <app-task-controls></app-task-controls>
+    </div>
     <mat-divider></mat-divider>
+    
+
 
     <app-tasks-list 
         [tasksList]="undoneTasks"
-        (onTaskDelete)="deleteTask($event)"
-        (onUpdateTaskStatus)="updateTaskStatus($event)"
         (onUpdateTask)="openDialog($event)"
     ></app-tasks-list>
 
@@ -17,8 +20,6 @@
 
     <app-tasks-list 
         [tasksList]="doneTasks"
-        (onTaskDelete)="deleteTask($event)"
-        (onUpdateTaskStatus)="updateTaskStatus($event)"
         (onUpdateTask)="openDialog($event)"
     ></app-tasks-list>
 </div>

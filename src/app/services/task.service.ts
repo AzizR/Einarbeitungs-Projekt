@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, filter } from 'rxjs';
 import { Task } from '../types/task';
 
 @Injectable({
@@ -10,11 +10,11 @@ export class TaskService {
   readonly tasks$ = this._tasks.asObservable();
 
   constructor() {
-    this.loadTasks()
+    this.loadTasks();
   }
 
   loadTasks(): void {
-    this._tasks.next(this.getTasksList())
+    this._tasks.next(this.getTasksList());
   }
 
   getTasksList(): Task[] {
@@ -28,6 +28,7 @@ export class TaskService {
   
   saveTasks(tasks: Task[]): void {
     window.localStorage.setItem('tasks', JSON.stringify(tasks));
+    this.loadTasks();
   }
 
   addTask(task: Task): void {
@@ -39,7 +40,6 @@ export class TaskService {
     tasks.push(task);
 
     this.saveTasks(tasks);
-    this.loadTasks()
   }
 
   deleteTask(taskId: string): void {
@@ -50,26 +50,59 @@ export class TaskService {
     }
 
     this.saveTasks(tasks);
-    this.loadTasks()
   }
 
   updateTaskStatus(task: Task): void {
     let tasks = this.getTasksList();
-    let currentTask = tasks.find((taskItem: Task) => taskItem.id === task.id)
+    let currentTask = tasks.find((taskItem: Task) => taskItem.id === task.id);
     
     if(currentTask) {
-      this.deleteTask(task.id)
-      currentTask.isDone = !currentTask.isDone
-      this.addTask(currentTask)
+      this.deleteTask(task.id);
+      currentTask.isDone = !currentTask.isDone;
+      this.addTask(currentTask);
     }
-    this.loadTasks()
+    this.loadTasks();
   }
 
   updateTask(task: Task): void {
     let tasks = this.getTasksList();
     
-    this.deleteTask(task.id)
-    this.addTask(task)
+    this.deleteTask(task.id);
+    this.addTask(task);
+  }
+
+  savePositionedTasks(tasks: Task[]) {
+    if(tasks.length > 0) {
+      const isDoneTasks = tasks[0].isDone;
+      let tasksWithOppositeStatus: Task[] = [];
+
+      this._tasks.subscribe(lastTasks => {
+        tasksWithOppositeStatus = lastTasks.filter(task => task.isDone !== isDoneTasks)
+      });
+
+      this.saveTasks([
+        ...tasksWithOppositeStatus,
+        ...tasks
+      ])
+      
+    }
+  }
+
+  sortTasks(sortingAtribbute: 'name' | 'deadline' | 'priority', sortingType: 'asc' | 'desc'): Task[] {
+    let sortedTasks: Task[] = []
+    this._tasks.subscribe(tasks => {
+      console.log(tasks);
+      // Todo: change any types to Task, debug a type error
+      if(sortingType === 'asc') {
+        sortedTasks = tasks.sort((a, b) => a[sortingAtribbute].localeCompare(b[sortingAtribbute]))
+      } else {
+        sortedTasks = tasks.sort((a: any, b: any) =>  b[sortingAtribbute].localeCompare(a[sortingAtribbute]))
+      }
+      console.log('sorted', sortedTasks);
+    })
+    this.saveTasks(sortedTasks)
+
+    return sortedTasks;
   }
 
 }

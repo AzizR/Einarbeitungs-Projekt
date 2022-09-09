@@ -6,3 +6,23 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     background-color: #eee;
 }
+
+.flex {
+    display: flex;
+}
+
+.content-center {
+    justify-content: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.menu-body {
+    padding: 10px 20px;
+}
