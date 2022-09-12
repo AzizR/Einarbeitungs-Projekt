@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { TaskService } from 'src/app/services/task.service';
+import { Component, Output, EventEmitter } from '@angular/core';
+
+type VisisbilityType = 'all' | 'done' | 'undone';
 
 @Component({
   selector: 'app-task-controls',
@@ -8,43 +8,21 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./task-controls.component.scss']
 })
 export class TaskControlsComponent {
-  formData = new FormGroup({
-    sort: new FormControl<'name' | 'deadline' | 'priority' | ''>(''),
-    sorttype: new FormControl<'asc' | 'desc' | ''>('')
-  })
+  isMenuOpened: boolean = false;
+  tasksVisibility: VisisbilityType = 'all';
+  @Output() changeTasksVisibility: EventEmitter<VisisbilityType> = new EventEmitter()
 
-  @ViewChild('sortmenu') sortMenu!: ElementRef;
-
-  sortType = [
-    {name: 'Ascending', value: 'asc'},
-    {name: 'Descending', value: 'desc'}
-  ]
-
-  sortItems = [
-    {name: 'Name', value: 'name'},
-    {name: 'Fälligkeit', value: 'deadline'},
-    {name: 'Priorität', value: 'priority'}
-  ]
-
-  constructor(
-    private taskService: TaskService
-  ) { }
-
-  handleMenuOpen(): void {
-    console.log(this.sortMenu.nativeElement);
-    this.sortMenu.nativeElement.style.display = 'block';
+  openSortMenu(): void {
+    this.isMenuOpened = true;
   }
 
-  closeMenu(): void {
-    this.sortMenu.nativeElement.style.display = 'none';
+  closeSortMenu(): void {
+    this.isMenuOpened = false;
   }
 
-  sortTasks(): void {
-    console.log('test');
-    // this.closeMenu()
-    const sort = this.formData.controls.sort.value || 'name';
-    const sortType = this.formData.controls.sorttype.value || 'asc'
-    this.taskService.sortTasks(sort, sortType)
+  changeVisibility(): void {
+    console.log('event', this.tasksVisibility);
+    this.changeTasksVisibility.emit(this.tasksVisibility)
   }
 
 }

@@ -1,0 +1,33 @@
+<form [formGroup]="formData" (ngSubmit)="sortTasks()">
+  <!-- TODO: write a component for custom-menu with component projection -->
+  <div class="sort-menu" #sortmenu>
+    <div class="menu-body">
+      <button mat-icon-button class="close-menu" (click)="closeMenu()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <div class="menu-fields-container">
+        <mat-form-field>
+          <mat-label>Sortieren nach</mat-label>
+          <mat-select formControlName="sort" name="sort" required>
+            <mat-option *ngFor="let item of sortItems" [value]="item.value">
+              {{ item.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="formData.controls['sort'].value">
+          <mat-label>Sortiertyp</mat-label>
+          <mat-select formControlName="sorttype" name="sorttype" required>
+            <mat-option *ngFor="let item of sortType" [value]="item.value">{{
+              item.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary">
+          Anwenden
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

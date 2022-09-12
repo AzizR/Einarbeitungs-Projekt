@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 /* Angular Material Modules */
 import { MatDividerModule } from '@angular/material/divider';
@@ -20,7 +21,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 /* Component imports */
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { TaskDialogComponent } from './components/task-dialog/task-dialog.compon
 import { LineThroughDirective } from './directives/line-through.directive';
 import { DialogDirective } from './directives/dynamic-components/dialog.directive';
 import { TaskControlsComponent } from './components/task-controls/task-controls.component';
+import { SortMenuComponent } from './components/sort-menu/sort-menu.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { TaskControlsComponent } from './components/task-controls/task-controls.
     LineThroughDirective,
     DialogDirective,
     TaskControlsComponent,
+    SortMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,9 +64,11 @@ import { TaskControlsComponent } from './components/task-controls/task-controls.
     MatSelectModule,
     MatGridListModule,
     ReactiveFormsModule,
+    FormsModule,
     MatCheckboxModule,
     MatTooltipModule,
-    DragDropModule
+    DragDropModule,
+    MatButtonToggleModule
   ],
   providers: [{
     provide: MAT_DATE_LOCALE, useValue: 'de-DE'

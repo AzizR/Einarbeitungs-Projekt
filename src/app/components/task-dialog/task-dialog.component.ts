@@ -17,13 +17,13 @@ export class TaskDialogComponent implements OnInit {
   @ViewChild(DialogDirective, {static: true}) appDialog!: DialogDirective;
 
   ngOnInit() {
-    this.loadComponent()
+    this.loadComponent();
   }
 
   loadComponent() {
     const viewContaierRef = this.appDialog.viewContainerRef;
 
-    const componentRef = viewContaierRef.createComponent(TaskFormComponent)
-    componentRef.instance.task = this.data.task
+    const componentRef = viewContaierRef.createComponent(TaskFormComponent);
+    componentRef.instance.task = this.data.task;
   }
 }

@@ -6,5 +6,4 @@ import { Directive, ViewContainerRef } from '@angular/core';
 export class DialogDirective {
 
   constructor(public viewContainerRef: ViewContainerRef) { }
-
 }

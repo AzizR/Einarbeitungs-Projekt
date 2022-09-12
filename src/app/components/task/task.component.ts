@@ -13,11 +13,12 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-  tasksList: Task[] = [];
+  tasks$!: Observable<Task[]>;
   undoneTasks: Task[] = [];
   doneTasks: Task[] = [];
 
-  tasks$!: Observable<Task[]>;
+  tasksVisibility: 'all' | 'done' | 'undone' = 'all';
+
   public tasksSubscription!: Subscription;
 
   constructor(
@@ -51,5 +52,9 @@ export class TaskComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.tasksSubscription?.unsubscribe()
+  }
+
+  changeTaskVisibility(visibility: 'all' | 'undone' | 'done') {
+    this.tasksVisibility = visibility;
   }
 }

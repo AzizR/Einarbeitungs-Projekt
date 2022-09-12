@@ -26,3 +26,9 @@ body {
 .menu-body {
     padding: 10px 20px;
 }
+
+// possible to change only in styles.scss
+.mat-button-toggle-label-content {
+    padding: 0 6px !important;
+    line-height: 36px !important;
+}

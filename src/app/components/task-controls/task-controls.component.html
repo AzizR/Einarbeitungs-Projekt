@@ -1,38 +1,21 @@
 <div class=" flex">
-    <form [formGroup]="formData" (ngSubmit)="sortTasks()">
-        <button id="sort-btn" (click)="handleMenuOpen()" mat-icon-button class="flex align-items-center" matTooltip="Sortieren">
+    <div class="tasks-visibility-buttons" >
+        <mat-button-toggle-group [(ngModel)]="tasksVisibility" (change)="changeVisibility()" name="tasksVisibility" aria-label="Tasks Visibility">
+            <mat-button-toggle matTooltip="alle Aufgaben" value="all"><mat-icon>rule</mat-icon></mat-button-toggle>
+            <mat-button-toggle matTooltip="erledigte Aufgaben" value="done"><mat-icon>done_all</mat-icon></mat-button-toggle>
+            <mat-button-toggle matTooltip="unerledigte Aufgaben" value="undone"><mat-icon>remove_done</mat-icon></mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <div class="sort">
+        <button id="sort-btn" (click)="openSortMenu()" mat-icon-button class="flex align-items-center" matTooltip="Sortieren">
             <mat-icon fontIcon="filter_list"></mat-icon> 
             <span class="btn-hidden-text">Sortieren</span>
         </button>
-        <!-- TODO: write a component for custom-menu -->
-        <div class="sort-menu" #sortmenu>
-            <div class="menu-body">
-                <button mat-icon-button class="close-menu" (click)="closeMenu()">
-                    <mat-icon>close</mat-icon>
-                </button>
-                <mat-form-field>
-                    <mat-label>Sortieren nach</mat-label>
-                    <mat-select formControlName="sort" name="sort" >
-                        <mat-option *ngFor="let item of sortItems" [value]="item.value">
-                            {{ item.name }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field *ngIf="formData.controls['sort'].value">
-                    <mat-label>Sortiertyp</mat-label>
-                    <mat-select formControlName="sorttype" name="sorttype">
-                        <mat-option *ngFor="let item of sortType" [value]="item.value">{{item.name}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <button type="submit" mat-raised-button color="primary">Anwenden</button>
-            </div>
-        </div>
-
-        <button mat-icon-button class="flex align-items-center" matTooltip="Kachen">
-            <mat-icon fontIcon="grid_view"></mat-icon>
-            <span class="btn-hidden-text">Kachen</span> 
-        </button>
-    </form>
+        <app-sort-menu [isMenuOpened]="isMenuOpened" (closeMenuEvent)="closeSortMenu()"></app-sort-menu>
+    </div>
+    
+    <button mat-icon-button class="flex align-items-center" matTooltip="Kachen">
+        <mat-icon fontIcon="grid_view"></mat-icon>
+        <span class="btn-hidden-text">Kachen</span> 
+    </button>
 </div>

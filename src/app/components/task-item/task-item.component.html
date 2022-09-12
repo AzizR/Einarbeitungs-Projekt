@@ -9,31 +9,32 @@
   matTooltipPosition="right"
   cdkDrag
 >
-    <mat-card-content >
-        <div class="task-item-row">
-            <div>
-                <section class="task-name">
-                  <mat-checkbox [checked]="task.isDone" color="primary" (click)="updateTaskStatus(task)">
-                    <span appLineThrough [isDone]="task.isDone">{{ task.name }}</span>
-                  </mat-checkbox>
-                </section>
-            </div>
-            <div>
-                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                    <mat-icon>more_vert</mat-icon>
-                  </button>
-                  <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="updateTask(task)">
-                      <mat-icon>edit</mat-icon>
-                      <span>Bearbeiten</span>
-                    </button>
-                    <mat-divider></mat-divider>
-                    <button mat-menu-item (click)="deleteTask(task.id)">
-                      <mat-icon [ngStyle]="{color: '#f10c'}">delete</mat-icon>
-                      <span>Löschen</span>
-                    </button>
-                  </mat-menu>
-            </div>
-        </div>
-    </mat-card-content>
+  <mat-card-content>
+      <div class="task-item-row">
+          <div>
+              <section class="task-name">
+                <mat-checkbox [checked]="task.isDone" color="primary" (click)="updateTaskStatus(task)">
+                  <span appLineThrough [isDone]="task.isDone">{{ task.name }}</span>
+                </mat-checkbox>
+              </section>
+          </div>
+          <div class="flex align-items-center">
+              <mat-icon style="color: rgba(0, 0, 0, 0.24);">drag_indicator</mat-icon>
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Context Menu">
+                  <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="updateTask(task)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Bearbeiten</span>
+                </button>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="deleteTask(task.id)">
+                  <mat-icon [ngStyle]="{color: '#f10c'}">delete</mat-icon>
+                  <span>Löschen</span>
+                </button>
+              </mat-menu>
+          </div>
+      </div>
+  </mat-card-content>
 </mat-card>

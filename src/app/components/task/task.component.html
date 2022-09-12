@@ -1,13 +1,12 @@
 <div class="task-container">
     <div class="flex space-between align-items-center">
         <h1>Aufgaben</h1>
-        <app-task-controls></app-task-controls>
+        <app-task-controls (changeTasksVisibility)="changeTaskVisibility($event)"></app-task-controls>
     </div>
     <mat-divider></mat-divider>
     
-
-
     <app-tasks-list 
+        *ngIf="tasksVisibility === 'all' || tasksVisibility === 'undone'"
         [tasksList]="undoneTasks"
         (onUpdateTask)="openDialog($event)"
     ></app-tasks-list>
@@ -19,6 +18,7 @@
     > + Aufgabe</button>
 
     <app-tasks-list 
+        *ngIf="tasksVisibility === 'all' || tasksVisibility === 'done'"
         [tasksList]="doneTasks"
         (onUpdateTask)="openDialog($event)"
     ></app-tasks-list>
