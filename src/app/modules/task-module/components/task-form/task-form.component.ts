@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms'
-import { Task } from 'src/app/types/task';
+import { Task } from '../../types/task';
 import { v4 as uuidv4 } from 'uuid';
-import { TaskService } from 'src/app/services/task.service';
-import { Priority } from 'src/app/types/priority';
+import { TaskService } from '../../services/task.service';
+import { Priority } from '../../types/priority';
 
 
 @Component({

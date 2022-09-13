@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { TaskService } from 'src/app/services/task.service';
+import { TaskService } from '../../services/task.service';
 
-import { Task } from 'src/app/types/task';
+
+import { Task } from '../../types/task';
 import { Observable, Subscription } from 'rxjs';
-import { DialogProperties } from 'src/app/types/dialog-properties';
+import { DialogProperties } from '../../types/dialog-properties';
 
 @Component({
   selector: 'app-task',

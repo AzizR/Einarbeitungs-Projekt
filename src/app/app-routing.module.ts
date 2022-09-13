@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TaskComponent } from './components/task/task.component';
+import { TaskComponent } from './modules/task-module/components/task/task.component';
 
 const routes: Routes = [
   { path: '', component: TaskComponent }

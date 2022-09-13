@@ -1,8 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Task } from 'src/app/types/task';
+import { Task } from '../../types/task';
 
-import { TaskService } from 'src/app/services/task.service';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-tasks-list',

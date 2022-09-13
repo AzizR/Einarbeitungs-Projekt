@@ -1,6 +1,6 @@
 import { Component, OnChanges, Input, ElementRef, ViewChild, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TaskService } from 'src/app/services/task.service';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-sort-menu',

@@ -1,7 +1,7 @@
 import { Directive, Input, TemplateRef } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { GenericDialogComponent } from 'src/app/components/generic-dialog/generic-dialog.component';
-import { DialogProperties } from 'src/app/types/dialog-properties';
+import { GenericDialogComponent } from '../../components/generic-dialog/generic-dialog.component';
+import { DialogProperties } from '../../types/dialog-properties';
 
 @Directive({
   selector: '[dialog]'
