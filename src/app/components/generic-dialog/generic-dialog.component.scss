@@ -4,11 +4,7 @@
     justify-content: space-between;
 }
 
-.dialog {
-    min-width: 650px;
-}
-
-.dialog-header {
+.header {
     @include FlexSpaceBetween;
     padding-bottom: 10px;
 
@@ -17,8 +13,3 @@
     }
 }
 
-@media screen and (max-width: 860px) {
-    .dialog {
-        min-width: 350px;
-    }
-}

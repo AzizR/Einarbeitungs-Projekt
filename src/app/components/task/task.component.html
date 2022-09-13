@@ -1,25 +1,34 @@
-<div class="task-container">
-    <div class="flex space-between align-items-center">
-        <h1>Aufgaben</h1>
-        <app-task-controls (changeTasksVisibility)="changeTaskVisibility($event)"></app-task-controls>
-    </div>
-    <mat-divider></mat-divider>
+<div class="container">
+    <div class="task-container">
+        <div class="flex space-between align-items-center">
+            <h1>Aufgaben</h1>
+            <app-task-controls (changeViewType)="changeViewType($event)" (changeTasksVisibility)="changeTaskVisibility($event)"></app-task-controls>
+        </div>
+        <mat-divider></mat-divider>
+
+        <app-tasks-list 
+            *ngIf="tasksVisibility === 'all' || tasksVisibility === 'undone'"
+            [tasksList]="undoneTasks"
+            (onUpdateTask)="openUpdateTaskDialog($event)"
+            [viewType]="viewType"
+        ></app-tasks-list>
     
-    <app-tasks-list 
-        *ngIf="tasksVisibility === 'all' || tasksVisibility === 'undone'"
-        [tasksList]="undoneTasks"
-        (onUpdateTask)="openDialog($event)"
-    ></app-tasks-list>
-
-    <button 
-        class="add-btn"
-        mat-raised-button color="primary"
-        (click)="openDialog()"
-    > + Aufgabe</button>
-
-    <app-tasks-list 
-        *ngIf="tasksVisibility === 'all' || tasksVisibility === 'done'"
-        [tasksList]="doneTasks"
-        (onUpdateTask)="openDialog($event)"
-    ></app-tasks-list>
+        <button 
+            class="add-btn"
+            mat-raised-button color="primary"
+            (click)="openCreateTaskDialog()"
+        > + Aufgabe</button>
+    
+        <app-tasks-list 
+            *ngIf="tasksVisibility === 'all' || tasksVisibility === 'done'"
+            [tasksList]="doneTasks"
+            (onUpdateTask)="openUpdateTaskDialog($event)"
+            [viewType]="viewType"
+        ></app-tasks-list>
+    </div>
 </div>
+
+<ng-container *dialog="taskFormProps">
+    <app-task-form [task]="taskFormProps.data"></app-task-form>
+</ng-container>
+

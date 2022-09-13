@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms'
 import { Task } from 'src/app/types/task';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,7 +12,7 @@ import { Priority } from 'src/app/types/priority';
   styleUrls: ['./task-form.component.scss']
 })
 export class TaskFormComponent implements OnInit {
-  task: Task | null = null;
+  @Input() task: Task | null = null;
 
   taskFormData = new FormGroup({
     id: new FormControl<string>(''),

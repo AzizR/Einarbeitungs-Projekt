@@ -11,6 +11,7 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class TasksListComponent {  
   @Input() tasksList: Task[] = [];
+  @Input() viewType!: 'list' | 'tile';
   @Output() onUpdateTask: EventEmitter<Task> = new EventEmitter();
 
   constructor(private taskService: TaskService) {}

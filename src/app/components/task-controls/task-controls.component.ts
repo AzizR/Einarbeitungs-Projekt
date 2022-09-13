@@ -10,7 +10,10 @@ type VisisbilityType = 'all' | 'done' | 'undone';
 export class TaskControlsComponent {
   isMenuOpened: boolean = false;
   tasksVisibility: VisisbilityType = 'all';
-  @Output() changeTasksVisibility: EventEmitter<VisisbilityType> = new EventEmitter()
+  @Output() changeTasksVisibility: EventEmitter<VisisbilityType> = new EventEmitter();
+  @Output() changeViewType: EventEmitter<'list' | 'tile'> = new EventEmitter();
+
+  viewType: 'list' | 'tile' = 'list';
 
   openSortMenu(): void {
     this.isMenuOpened = true;
@@ -22,7 +25,12 @@ export class TaskControlsComponent {
 
   changeVisibility(): void {
     console.log('event', this.tasksVisibility);
-    this.changeTasksVisibility.emit(this.tasksVisibility)
+    this.changeTasksVisibility.emit(this.tasksVisibility);
+  }
+
+  changeView() {
+    this.viewType = this.viewType === 'list' ? 'tile' : 'list';
+    this.changeViewType.emit(this.viewType)
   }
 
 }

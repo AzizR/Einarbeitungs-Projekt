@@ -22,6 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatRadioModule } from '@angular/material/radio';
 
 /* Component imports */
 import { AppComponent } from './app.component';
@@ -29,11 +30,11 @@ import { TaskComponent } from './components/task/task.component';
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
-import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 import { LineThroughDirective } from './directives/line-through.directive';
-import { DialogDirective } from './directives/dynamic-components/dialog.directive';
+import { DialogDirective as GenericDialogDirective } from './directives/generic-dialog/dialog.directive';
 import { TaskControlsComponent } from './components/task-controls/task-controls.component';
 import { SortMenuComponent } from './components/sort-menu/sort-menu.component';
+import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,11 +43,11 @@ import { SortMenuComponent } from './components/sort-menu/sort-menu.component';
     TasksListComponent,
     TaskItemComponent,
     TaskFormComponent,
-    TaskDialogComponent,
     LineThroughDirective,
-    DialogDirective,
     TaskControlsComponent,
     SortMenuComponent,
+    GenericDialogComponent,
+    GenericDialogDirective
   ],
   imports: [
     BrowserModule,
@@ -68,7 +69,8 @@ import { SortMenuComponent } from './components/sort-menu/sort-menu.component';
     MatCheckboxModule,
     MatTooltipModule,
     DragDropModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatRadioModule
   ],
   providers: [{
     provide: MAT_DATE_LOCALE, useValue: 'de-DE'

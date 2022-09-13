@@ -15,18 +15,25 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field *ngIf="formData.controls['sort'].value">
+        <!-- <mat-form-field *ngIf="formData.controls['sort'].value">
           <mat-label>Sortiertyp</mat-label>
           <mat-select formControlName="sorttype" name="sorttype" required>
             <mat-option *ngFor="let item of sortType" [value]="item.value">{{
               item.name
             }}</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
 
+        <div *ngIf="formData.controls['sort'].value">
+          <label id="sort-type">Sortiertyp:</label>
+          <mat-radio-group required formControlName="sorttype" name="sorttype" color="primary">
+            <mat-radio-button *ngFor="let item of sortType" [value]="item.value">{{ item.name }}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <!-- <br>
         <button type="submit" mat-raised-button color="primary">
           Anwenden
-        </button>
+        </button> -->
       </div>
     </div>
   </div>

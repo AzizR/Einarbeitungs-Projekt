@@ -1,0 +1,17 @@
+<div class="dialog">
+    <div class="header">
+        <h2 mat-dialog-title>{{data.title}}</h2>
+        <button mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="content">
+        <ng-template [ngTemplateOutlet]="data.template"></ng-template>
+    </div>
+
+    <div class="footer">
+        <!-- footer -->
+        
+    </div>
+</div>

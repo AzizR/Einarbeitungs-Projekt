@@ -33,29 +33,34 @@ export class SortMenuComponent implements OnChanges {
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes',changes);
     if(changes['isMenuOpened'].currentValue) {
-      this.openMenu()
-    } 
+      this.openMenu();
+    }
+
+    this.onFormChanges()
+  }
+
+  onFormChanges() {
+    this.formData.get('sort')?.valueChanges.subscribe(_ => this.formData.get('sorttype')?.setValue(''))
+    this.formData.get('sorttype')?.valueChanges.subscribe(_ => this.sortTasks())
   }
 
   openMenu(): void {
-    console.log(this.sortMenu.nativeElement);
     this.sortMenu.nativeElement.style.display = 'block';
   }
 
   closeMenu(): void {
     this.sortMenu.nativeElement.style.display = 'none';
-    this.closeMenuEvent.emit()
+    this.closeMenuEvent.emit();
   }
 
   sortTasks(): void {
     const sort = this.formData.controls.sort.value || 'name';
-    const sortType = this.formData.controls.sorttype.value || 'asc'
+    const sortType = this.formData.controls.sorttype.value || 'asc';
 
     if (this.formData.controls.sort.value && this.formData.controls.sorttype.value) {
-      this.taskService.sortTasks(sort, sortType)
-      this.closeMenu()
+      this.taskService.sortTasks(sort, sortType);
+      this.closeMenu();
     }
 
   }

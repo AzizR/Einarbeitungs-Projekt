@@ -1,21 +1,48 @@
-<div class=" flex">
-    <div class="tasks-visibility-buttons" >
-        <mat-button-toggle-group [(ngModel)]="tasksVisibility" (change)="changeVisibility()" name="tasksVisibility" aria-label="Tasks Visibility">
-            <mat-button-toggle matTooltip="alle Aufgaben" value="all"><mat-icon>rule</mat-icon></mat-button-toggle>
-            <mat-button-toggle matTooltip="erledigte Aufgaben" value="done"><mat-icon>done_all</mat-icon></mat-button-toggle>
-            <mat-button-toggle matTooltip="unerledigte Aufgaben" value="undone"><mat-icon>remove_done</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-    </div>
-    <div class="sort">
-        <button id="sort-btn" (click)="openSortMenu()" mat-icon-button class="flex align-items-center" matTooltip="Sortieren">
-            <mat-icon fontIcon="filter_list"></mat-icon> 
-            <span class="btn-hidden-text">Sortieren</span>
-        </button>
-        <app-sort-menu [isMenuOpened]="isMenuOpened" (closeMenuEvent)="closeSortMenu()"></app-sort-menu>
-    </div>
-    
-    <button mat-icon-button class="flex align-items-center" matTooltip="Kachen">
-        <mat-icon fontIcon="grid_view"></mat-icon>
-        <span class="btn-hidden-text">Kachen</span> 
+<div class="flex">
+  <div class="tasks-visibility-buttons">
+    <mat-button-toggle-group
+      [(ngModel)]="tasksVisibility"
+      (change)="changeVisibility()"
+      name="tasksVisibility"
+      aria-label="Tasks Visibility"
+    >
+      <mat-button-toggle matTooltip="alle Aufgaben" value="all"
+        ><mat-icon>rule</mat-icon></mat-button-toggle
+      >
+      <mat-button-toggle matTooltip="erledigte Aufgaben" value="done"
+        ><mat-icon>done_all</mat-icon></mat-button-toggle
+      >
+      <mat-button-toggle matTooltip="unerledigte Aufgaben" value="undone"
+        ><mat-icon>remove_done</mat-icon></mat-button-toggle
+      >
+    </mat-button-toggle-group>
+  </div>
+  <div class="sort">
+    <button
+      id="sort-btn"
+      (click)="openSortMenu()"
+      mat-icon-button
+      class="flex align-items-center"
+      matTooltip="Sortieren"
+    >
+      <mat-icon fontIcon="filter_list"></mat-icon>
     </button>
+    <app-sort-menu
+      [isMenuOpened]="isMenuOpened"
+      (closeMenuEvent)="closeSortMenu()"
+    ></app-sort-menu>
+  </div>
+
+  <button
+    mat-icon-button
+    class="flex align-items-center"
+    matTooltip="Kachen Ansicht"
+    (click)="changeView()"
+  >
+
+    <mat-icon *ngIf="viewType === 'list'; else viewTypeElse" fontIcon="grid_view"></mat-icon>
+    <ng-template #viewTypeElse>
+        <mat-icon fontIcon="list"></mat-icon>
+    </ng-template>
+  </button>
 </div>
